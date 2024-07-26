@@ -1,0 +1,15 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+  <div class="product-detail">
+    <h2>{{ product.name }}</h2>
+    <p>{{ product.description }}</p>
+    <p>Price: ${{ product.price }}</p>
+    {% if product.image %}
+      <img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width: 40%; height: 30%; display: block;">
+    <p>{{ product.descption }}</p>
+    {% endif %}
+  </div>
+
+
+{% endblock content %}
