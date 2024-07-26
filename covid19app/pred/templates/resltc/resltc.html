@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19 Prediction Result</title>
+    <style>
+        body {
+            background-image: url(static/result.png);
+            background-position: center;
+            background-size: cover;
+            font-family: sans-serif;
+            margin-top: 40px;
+            color: black; /* الكلام أسود */
+        }
+
+        .container {
+            width: 800px;
+            margin: auto;
+        }
+
+        .result {
+            background-color: burlywood; /* خلفية الجدول بني */
+            padding: 20px;
+            border: 2px solid black; /* إطار أسود للجدول */
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .result h2 {
+            color: blue; /* العنوان بلون أزرق */
+            margin-bottom: 10px;
+        }
+
+        .result p {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .result .img {
+            width: 100%; /* التأكد من أن الصورة تأخذ عرضا كاملا */
+            max-width: 600px; /* حد أقصى لعرض الصورة */
+            display: block;
+            margin: auto; /* توسيط الصورة */
+            margin-top: 10px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="color: blue;">COVID-19 Prediction Result</h1>
+        <div class="result">
+            {% if data %}
+                {% for task in data %}
+                    <h2>Name: {{ task.name }}</h2>
+                    <p>Email: {{ task.email }}</p>
+                    <p>Phone: {{ task.phone }}</p>
+                    <p>Gender: {{ task.get_gender_display }}</p> <!-- استخدم get_gender_display لعرض الخيارات -->
+                    <p>Age: {{ task.age }}</p>
+                    <p>Prediction: {{ task.prediction }}</p>
+                    <img class="img" src="{{ task.image.url }}" alt="Patient Image">
+                {% endfor %}
+            {% else %}
+                <p>No results found.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
